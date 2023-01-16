@@ -63,6 +63,7 @@ fn main() {
     ]);
 
     let mut line = read_line();
+    let line_len = line.len() * 3;
     line.pop(); // Remove \n at the end of the string
     line = line.to_lowercase(); // Lowercase all letters
     let line_vec: Vec<char> = line.chars().collect();
@@ -84,11 +85,12 @@ fn main() {
         })
         .collect();
 
-    println!("\nCODE: {}", line_to_morse);
+    println!("\nCODE: [{: ^line_len$}]", line_to_morse);
 }
 
 fn read_line() -> String {
     let mut line = String::new();
+    println!("Enter string:");
     let stdinput = io::stdin();
     stdinput.read_line(&mut line).unwrap();
     return line.to_string();
