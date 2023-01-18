@@ -1,5 +1,6 @@
+use console::style;
 use std::collections::HashMap;
-use std::io;
+use text_io::read;
 
 fn main() {
     // Morse Code Table
@@ -62,11 +63,10 @@ fn main() {
         ("/", "-..-."),
     ]);
 
-    let mut line = read_line();
-    let line_len = line.len() * 3;
-    line.pop(); // Remove \n at the end of the string
+    print!("{}", style("Enter string: ").italic());
+    let mut line: String = read!("{}\n");
     line = line.to_lowercase(); // Lowercase all letters
-    let line_vec: Vec<char> = line.chars().collect();
+    let line_vec: Vec<char> = line.chars().collect(); // Get all char
 
     let line_to_morse: String = (0..line.len())
         .map(|n| {
@@ -78,20 +78,13 @@ fn main() {
 
             let idx = match morse_dict.get(&chstr) {
                 Some(value) => value.to_string(),
-                None => "#".to_string(),
+                None => "#".to_string(), // Unknown values will be converted to #
             };
 
             return idx;
         })
         .collect();
 
-    println!("\nCODE: [{: ^line_len$}]", line_to_morse);
-}
-
-fn read_line() -> String {
-    let mut line = String::new();
-    println!("Enter string:");
-    let stdinput = io::stdin();
-    stdinput.read_line(&mut line).unwrap();
-    return line.to_string();
+    println!("\n{}{}", style("String: ").bold(), line);
+    println!("└──  {}[{}]", style("MORSE: ").bold(), line_to_morse);
 }
