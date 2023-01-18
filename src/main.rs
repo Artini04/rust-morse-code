@@ -85,6 +85,6 @@ fn main() {
         })
         .collect();
 
-    println!("\n{}{}", style("String: ").bold(), line);
+    println!("\n{}{}", style("STRING: ").bold(), line);
     println!("└──  {}[{}]", style("MORSE: ").bold(), line_to_morse);
 }
