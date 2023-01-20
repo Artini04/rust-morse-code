@@ -1,8 +1,3 @@
 # rust-morse-code
-Small string to Morse Code converter. Made this to learn how HashMaps works.
+Small console program that converts string to Morse Code. Made this to learn how HashMaps works.
 All unknown characters will be converted to "#"
-
-## Run
-```
-cargo run
-```
